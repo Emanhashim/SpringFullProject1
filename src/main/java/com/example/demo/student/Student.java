@@ -12,6 +12,7 @@ package com.example.demo.student;
 
 import jakarta.persistence.*;
 
+
 import java.time.LocalDate;
 import java.time.Period;
 
@@ -20,6 +21,8 @@ import java.time.Period;
 @Table // this for the tables
 
 public class Student {
+    public Student() {
+    }
 
     @Id // this is we trying to put default id
 
@@ -38,15 +41,19 @@ public class Student {
     private String name;
     private String email;
 
-    @Transient  //this will allow us to calculate age from date of birth to current date or dont need to be inserted directly in db column
 
     private LocalDate dob;
+
+    @Transient  //this will allow us to calculate age from date of birth to current date or dont need to be inserted directly in db column
     private Integer age;
 
 
     //a constrcutor with none or default
-    public Student(long l, String name, String mail, LocalDate localDate, int id) {
+    public Student(long l, String name, String mail, LocalDate dob, int id) {
     }
+
+
+
 
 
     //all included constructor

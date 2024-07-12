@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+
 // @Component  // this means this is a class that can be initiated from other class or a bean that can be autowired
 //we can use @service and @component its same thing only semantic difference
 

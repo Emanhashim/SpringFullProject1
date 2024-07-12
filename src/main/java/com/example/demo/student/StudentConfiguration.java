@@ -16,7 +16,10 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.util.List;
 
+import static java.util.Calendar.AUGUST;
+
 @Configuration
+
 public class StudentConfiguration {
 
     @Bean  // used to run
@@ -26,16 +29,16 @@ return args -> {
 
     Student mariam = new Student(
 
-            "mery",
+            "kira",
             "aa@gmail.com",
-            LocalDate.of(1997, Month.AUGUST,30)
+            LocalDate.of(1997, AUGUST,30)
     );
 
     Student rora = new Student(
 
-            "eman",
-            "emu@gmail.com",
-            LocalDate.of(1920, Month.AUGUST,30)
+            "mami",
+            "hawa@gmail.com",
+            LocalDate.of(1989, AUGUST,2)
 
 
     );
