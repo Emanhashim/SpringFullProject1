@@ -13,6 +13,7 @@ package com.example.demo.student;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.time.Period;
 
 
 @Entity // this allows as to map through our db from our class or model  also this is for hibernate
@@ -31,42 +32,53 @@ public class Student {
             generator = "student_sequence"
     )
 
+
+    // here we uses logn ID for the REpository
     private long Id;
     private String name;
     private String email;
+
+    @Transient  //this will allow us to calculate age from date of birth to current date or dont need to be inserted directly in db column
+
     private LocalDate dob;
     private Integer age;
 
 
     //a constrcutor with none or default
-    public Student(long l, String susu, String mail, LocalDate localDate, int id) {
+    public Student(long l, String name, String mail, LocalDate localDate, int id) {
     }
 
 
     //all included constructor
-    public Student(Integer age,
+    public Student(
+            String name,
+            String email,
                    LocalDate dob,
-                   String email,
-                   String name,
+
+
                    long id) {
-        this.age = age;
-        this.dob = dob;
-        this.email = email;
         this.name = name;
+
+        this.email = email;
+        this.dob = dob;
         Id = id;
     }
 
     //constructor to all with out id, since the db generates the id by default
 
 
-    public Student(Integer age,
-                   LocalDate dob,
+    public Student(
+
+                   String name,
                    String email,
-                   String name) {
-        this.age = age;
-        this.dob = dob;
-        this.email = email;
+                   LocalDate dob
+                  ) {
+
+
         this.name = name;
+        this.email = email;
+        this.dob = dob;
+
     }
 
     public long getId() {
@@ -102,7 +114,7 @@ public class Student {
     }
 
     public Integer getAge() {
-        return age;
+        return Period.between(this.dob, LocalDate.now()).getYears();
     }
 
     public void setAge(Integer age) {
