@@ -11,10 +11,13 @@ package com.example.demo.student;
 
 //this page has all the API layers of all or the routing happens here
 
+import com.example.demo.Report.ReportService1;
+import net.sf.jasperreports.engine.JRException;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.List;
@@ -39,6 +42,13 @@ public class studentController {
     public studentController(StudentService studentService) {
         this.studentService = studentService;
     }
+
+
+
+
+    //this for jasper report injection
+    @Autowired
+    private ReportService1 reportService1;
 
     //we use this to store data from our static side(configurationClass)
     @GetMapping
@@ -67,5 +77,15 @@ public class studentController {
         studentService.updateStudent(studentId,name,email);
     }
 
+
+    //this for jasper report generator
+
+    @GetMapping("/report/{format}")
+
+    public String generateReport(@PathVariable  String format) throws JRException, FileNotFoundException {
+
+        return reportService1.exportReport(format);
+
+    }
 
 }
